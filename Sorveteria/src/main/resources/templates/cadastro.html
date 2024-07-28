@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Cadastro</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/style.css">
+    <style>
+        .btn-primary {
+            background-color: #FF9900;
+            border-color: #FF9900;
+        }
+        .btn-primary:hover {
+            background-color: #e68a00;
+            border-color: #e68a00;
+        }
+        .text-danger {
+            color: #D9534F !important;
+        }
+    </style>
+</head>
+<body>
+   
+    <header th:replace="fragments/header :: header"></header>
+    
+
+    <main>
+        <div class="container mt-4">
+            <h1 class="mb-4">Cadastro de Sorvete</h1>
+            <form th:action="@{/salvar}" th:object="${sorvete}" method="post" enctype="multipart/form-data">
+                <div class="form-group">
+                    <label for="nome">Nome</label>
+                    <input type="text" id="nome" name="nome" th:field="*{nome}" class="form-control"/>
+                    <span th:if="${#fields.hasErrors('nome')}" th:errors="*{nome}" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label for="descricao">Descrição</label>
+                    <textarea id="descricao" name="descricao" th:field="*{descricao}" class="form-control"></textarea>
+                    <span th:if="${#fields.hasErrors('descricao')}" th:errors="*{descricao}" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label for="imageUri">URI da Imagem</label>
+                    <input type="text" id="imageUri" name="imageUri" th:field="*{imageUri}" class="form-control"/>
+                    <span th:if="${#fields.hasErrors('imageUri')}" th:errors="*{imageUri}" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label for="preco">Preço</label>
+                    <input type="number" id="preco" name="preco" th:field="*{preco}" step="0.01" class="form-control"/>
+                    <span th:if="${#fields.hasErrors('preco')}" th:errors="*{preco}" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label for="quantidadeEstoque">Quantidade em Estoque</label>
+                    <input type="number" id="quantidadeEstoque" name="quantidadeEstoque" th:field="*{quantidadeEstoque}" class="form-control"/>
+                    <span th:if="${#fields.hasErrors('quantidadeEstoque')}" th:errors="*{quantidadeEstoque}" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label for="tipo">Tipo</label>
+                    <input type="text" id="tipo" name="tipo" th:field="*{tipo}" class="form-control"/>
+                    <span th:if="${#fields.hasErrors('tipo')}" th:errors="*{tipo}" class="text-danger"></span>
+                </div>
+                <input type="submit" value="Salvar" class="btn btn-primary"/>
+            </form>
+        </div>
+    </main>
+    
+  
+    <footer th:replace="fragments/footer :: footer"></footer>
+    
+  
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

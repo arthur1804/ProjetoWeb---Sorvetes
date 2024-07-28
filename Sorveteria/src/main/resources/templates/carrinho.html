@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Carrinho</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/style.css">
+    <style>
+        .btn-success {
+            background-color: #FF9900;
+            border-color: #FF9900;
+        }
+        .btn-success:hover {
+            background-color: #e68a00;
+            border-color: #e68a00;
+        }
+        .alert-warning {
+            background-color: #fcf8e3;
+            color: #856404;
+        }
+    </style>
+</head>
+<body>
+
+    <header th:replace="fragments/header :: header"></header>
+    
+
+    <main>
+        <div class="container mt-4">
+            <h1 class="mb-4">Carrinho de Compras</h1>
+            <div th:if="${message}" class="alert alert-warning" role="alert" th:text="${message}"></div>
+            
+          
+            <table class="table table-striped">
+                <thead class="thead-dark">
+                    <tr>
+                        <th scope="col">ID</th>
+                        <th scope="col">Nome</th>
+                        <th scope="col">Descrição</th>
+                        <th scope="col">Preço</th>
+                        <th scope="col">Quantidade</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="sorvete : ${carrinho}">
+                        <td th:text="${sorvete.id}"></td>
+                        <td th:text="${sorvete.nome}"></td>
+                        <td th:text="${sorvete.descricao}"></td>
+                        <td th:text="${sorvete.preco}"></td>
+                        <td th:text="${sorvete.quantidadeEstoque}"></td>
+                    </tr>
+                </tbody>
+            </table>
+            <a href="/finalizarCompra" class="btn btn-success">Finalizar Compra</a>
+        </div>
+    </main>
+    
+
+    <footer th:replace="fragments/footer :: footer"></footer>
+    
+  
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

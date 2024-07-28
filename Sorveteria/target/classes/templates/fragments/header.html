@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title th:text="${pageTitle}">Loja de Sorvetes</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <a class="navbar-brand" th:href="@{/index}">Loja de Sorvetes</a>
+            <div class="collapse navbar-collapse">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" th:href="@{/index}">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" th:href="@{/admin}">Admin</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" th:href="@{/cadastro}">Cadastro</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" th:href="@{/verCarrinho}">Carrinho <span th:text="${quantidadeCarrinho}"></span></a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+</body>
+</html>

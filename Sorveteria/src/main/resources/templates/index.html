@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Home</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link rel="stylesheet" href="/css/style.css">
+    <style>
+        .amazon-header {
+            background-color: #232F3E;
+            color: #FFFFFF;
+        }
+        .amazon-header a {
+            color: #FFFFFF;
+        }
+        .amazon-header a:hover {
+            color: #FF9900;
+        }
+        .amazon-item {
+            border: 2px solid #FF9900;
+            padding: 10px;
+            margin: 10px;
+            text-align: center;
+        }
+        .amazon-item img {
+            max-width: 100%;
+            height: auto;
+        }
+        .cart-counter {
+            position: relative;
+        }
+        .cart-counter .badge {
+            position: absolute;
+            top: -10px;
+            right: -10px;
+            background-color: #FF9900;
+            color: #FFFFFF;
+            border-radius: 50%;
+        }
+    </style>
+</head>
+<body>
+
+    <header class="amazon-header py-3">
+        <div class="container d-flex justify-content-between align-items-center">
+            <a href="/" class="navbar-brand">Sorvetando</a>
+            <div class="d-flex">
+                <a href="/admin" class="btn btn-outline-light mr-3">Admin</a>
+                <div class="cart-counter">
+                    <a href="/verCarrinho" class="btn btn-outline-light">
+                        <i class="fas fa-shopping-cart"></i>
+                        <span th:text="${quantidadeCarrinho}">0</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </header>
+    
+ 
+    <main>
+        <div class="container mt-4">
+            <h1 class="mb-4">Cardápio</h1>
+            <div class="row">
+                <div th:each="sorvete : ${sorvetes}" class="col-md-4 amazon-item">
+                    <img th:src="${sorvete.imageUri}" alt="Imagem do sorvete">
+                    <h4 th:text="${sorvete.nome}"></h4>
+                    <p th:text="${sorvete.descricao}"></p>
+                    <p th:text="${sorvete.preco}"></p>
+                    <p th:text="${sorvete.quantidadeEstoque}"></p>
+                    <p th:text="${sorvete.tipo}"></p>
+                    <a th:href="@{/adicionarCarrinho(id=${sorvete.id})}" class="btn btn-primary btn-sm">Adicionar ao Carrinho</a>
+                </div>
+            </div>
+        </div>
+    </main>
+    
+
+    <footer th:replace="fragments/footer :: footer"></footer>
+    
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
